@@ -103,6 +103,8 @@
       :attrs (Element. tag v content meta)
       :content (Element. tag attrs v meta)
       (with-meta {:tag tag :attrs attrs :content content k v} meta)))
+  #?(:cljs (-contains-key? [this k]
+                           (case k (:tag :attrs :content) true false)))
   #?(:cljs IMap)
   (#?(:clj without :cljs -dissoc) [this k]
     (with-meta
